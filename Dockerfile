@@ -24,9 +24,10 @@ FROM jlesage/baseimage-gui:alpine-3.22-v4
 LABEL maintainer="fireph"
 
 # Environment
+ENV ENABLE_CJK_FONT=1
 ENV DARK_MODE=1
 ENV KEEP_APP_RUNNING=1
-ENV TDM_VERSION_TAG=16.dev.442a0c5
+ENV TDM_VERSION_TAG=16.dev.040e26e
 ENV APP_ICON_URL=https://raw.githubusercontent.com/DevilXD/TwitchDropsMiner/master/appimage/pickaxe.png
 
 # Copy fonts needed for emojis
