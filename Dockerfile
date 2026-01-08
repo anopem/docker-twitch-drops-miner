@@ -19,7 +19,7 @@ RUN apk add --no-cache ca-certificates wget unzip && \
     chmod +x /TwitchDropsMiner
 
 # Final image
-FROM jlesage/baseimage-gui:alpine-3.22-v4
+FROM jlesage/baseimage-gui:alpine-3.23-v4
 
 LABEL maintainer="fireph"
 
@@ -27,7 +27,7 @@ LABEL maintainer="fireph"
 ENV ENABLE_CJK_FONT=1
 ENV DARK_MODE=1
 ENV KEEP_APP_RUNNING=1
-ENV TDM_VERSION_TAG=16.dev.040e26e
+ENV TDM_VERSION_TAG=16.dev.c154a81
 ENV APP_ICON_URL=https://raw.githubusercontent.com/DevilXD/TwitchDropsMiner/master/appimage/pickaxe.png
 
 # Copy fonts needed for emojis
