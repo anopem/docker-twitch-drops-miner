@@ -55,7 +55,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: ${{ github.event_name == 'release' }}
           tags: |
-            dungfu/twitch-drops-miner:temp-tkinter-${{ matrix.arch }}-${{ github.run_id }}
+            anopem/twitch-drops-miner:temp-tkinter-${{ matrix.arch }}-${{ github.run_id }}
           pull: true
           no-cache: true
 
@@ -108,7 +108,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: ${{ github.event_name == 'release' }}
           tags: |
-            dungfu/twitch-drops-miner:temp-nicegui-${{ matrix.arch }}-${{ github.run_id }}
+            anopem/twitch-drops-miner:temp-nicegui-${{ matrix.arch }}-${{ github.run_id }}
           pull: true
           no-cache: true
 
@@ -151,38 +151,38 @@ jobs:
           NICEGUI_TEMP_TAGS=()
 
           for arch in "${ARCHS[@]}"; do
-            TKINTER_TEMP_TAGS+=("dungfu/twitch-drops-miner:temp-tkinter-${arch}-${{ github.run_id }}")
-            NICEGUI_TEMP_TAGS+=("dungfu/twitch-drops-miner:temp-nicegui-${arch}-${{ github.run_id }}")
+            TKINTER_TEMP_TAGS+=("anopem/twitch-drops-miner:temp-tkinter-${arch}-${{ github.run_id }}")
+            NICEGUI_TEMP_TAGS+=("anopem/twitch-drops-miner:temp-nicegui-${arch}-${{ github.run_id }}")
           done
 
           # Create version tag
           docker buildx imagetools create \
-            -t dungfu/twitch-drops-miner:${{ steps.version.outputs.version }} \
+            -t anopem/twitch-drops-miner:${{ steps.version.outputs.version }} \
             "${TKINTER_TEMP_TAGS[@]}"
 
           # Create dev tag
           docker buildx imagetools create \
-            -t dungfu/twitch-drops-miner:16.dev \
+            -t anopem/twitch-drops-miner:16.dev \
             "${TKINTER_TEMP_TAGS[@]}"
 
           # Create latest tag
           docker buildx imagetools create \
-            -t dungfu/twitch-drops-miner:latest \
+            -t anopem/twitch-drops-miner:latest \
             "${TKINTER_TEMP_TAGS[@]}"
 
           # Create webui dev version tag
           docker buildx imagetools create \
-            -t dungfu/twitch-drops-miner:webui-${{ steps.version.outputs.version }} \
+            -t anopem/twitch-drops-miner:webui-${{ steps.version.outputs.version }} \
             "${NICEGUI_TEMP_TAGS[@]}"
 
           # Create webui dev tag
           docker buildx imagetools create \
-            -t dungfu/twitch-drops-miner:webui-16.dev \
+            -t anopem/twitch-drops-miner:webui-16.dev \
             "${NICEGUI_TEMP_TAGS[@]}"
 
           # Create webui tag
           docker buildx imagetools create \
-            -t dungfu/twitch-drops-miner:webui \
+            -t anopem/twitch-drops-miner:webui \
             "${NICEGUI_TEMP_TAGS[@]}"
 
       - name: Clean up temp tags
@@ -194,10 +194,10 @@ jobs:
           for arch in "${ARCHS[@]}"; do
             curl -X DELETE \
               -H "Authorization: JWT $TOKEN" \
-              "https://hub.docker.com/v2/repositories/dungfu/twitch-drops-miner/tags/temp-tkinter-${arch}-${{ github.run_id }}/"
+              "https://hub.docker.com/v2/repositories/anopem/twitch-drops-miner/tags/temp-tkinter-${arch}-${{ github.run_id }}/"
             curl -X DELETE \
               -H "Authorization: JWT $TOKEN" \
-              "https://hub.docker.com/v2/repositories/dungfu/twitch-drops-miner/tags/temp-nicegui-${arch}-${{ github.run_id }}/"
+              "https://hub.docker.com/v2/repositories/anopem/twitch-drops-miner/tags/temp-nicegui-${arch}-${{ github.run_id }}/"
           done
 
       - name: Update Docker Hub README
@@ -205,5 +205,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_NAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-          repository: dungfu/twitch-drops-miner
+          repository: anopem/twitch-drops-miner
           readme-filepath: ./README.md
