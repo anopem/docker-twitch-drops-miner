@@ -1,4 +1,4 @@
-name: Dockerimage Main
+name: Dockerimage Main Manual
 
 on:
   release:
