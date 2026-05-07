@@ -154,30 +154,10 @@ jobs:
             NICEGUI_TEMP_TAGS+=("anopem/twitch-drops-miner:temp-nicegui-${arch}-${{ github.run_id }}")
           done
 
-          # Create version tag
-          docker buildx imagetools create \
-            -t anopem/twitch-drops-miner:${{ steps.version.outputs.version }} \
-            "${TKINTER_TEMP_TAGS[@]}"
-
-          # Create dev tag
-          docker buildx imagetools create \
-            -t anopem/twitch-drops-miner:16.dev \
-            "${TKINTER_TEMP_TAGS[@]}"
-
           # Create latest tag
           docker buildx imagetools create \
             -t anopem/twitch-drops-miner:latest \
             "${TKINTER_TEMP_TAGS[@]}"
-
-          # Create webui dev version tag
-          docker buildx imagetools create \
-            -t anopem/twitch-drops-miner:webui-${{ steps.version.outputs.version }} \
-            "${NICEGUI_TEMP_TAGS[@]}"
-
-          # Create webui dev tag
-          docker buildx imagetools create \
-            -t anopem/twitch-drops-miner:webui-16.dev \
-            "${NICEGUI_TEMP_TAGS[@]}"
 
           # Create webui tag
           docker buildx imagetools create \
