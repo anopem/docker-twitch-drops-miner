@@ -18,7 +18,7 @@ FROM alpine:latest
 LABEL maintainer="AnoPem"
 
 # Environment
-ENV TDM_VERSION_TAG=16.dev.8a13ef5
+ENV TDM_VERSION_TAG=16.dev.8cf46c2
 ENV UI_BACKEND=nicegui
 
 # Install runtime dependencies
